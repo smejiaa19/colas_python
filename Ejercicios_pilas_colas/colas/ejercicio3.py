@@ -7,48 +7,50 @@ y hora del pedido. El sistema debe:
 ✔	Mostrar la cola actual de pedidos,
 ✔	Atender (eliminar) el primer pedido.
 '''
+from collections import deque
 
-class tip_top():
-    
-    def __init__(self):
-        pass
-    
-    def agregar_pedidos(self):
-        self.lista_pedidos = []
-        seq = int(input('Cuantos pedidos desea agregar: '))
-        for i in range (seq): 
-            i = 1
-            self.numero_orden = i
-            i =+ 1
+lista_pedidos = deque()
+
+def agregar_pedidos():
+    n = int(input('Cuantos pedidos desea agregar: '))
+    contador = 1
+    hora = 9.00
+    for i in range (n):
+        nombre = input('Ingrese el nombre de la persona: ')
+        seleccion = int(input('''Que tipo de combo desea ordenar: 
+        >>> 1) - Clasico
+        >>> 2) - Familiar 
+        >>> 3) - Sandwich
+        >>> '''))
+        
+        match seleccion:
+            case 1:
+                tipo = 'Clasico'
+            case 2:
+                tipo = 'Familiar'
+            case 3:
+                tipo = 'Sandwich'
+            case _:
+                pass
             
-            self.nombre_cliente = input('Ingrese el nombre del cliente que realiza el pedido: ')
-            self.tipo_combo = int(input('''Que tipo de combo desea: 
-            >>> 1) - Clasico
-            >>> 2) - Familiar
-            >>> 3) - Sandwich
-            >>> '''))
-            
-            match self.tipo_combo:
-            
-                case 1:
-                    self.tipo_combo = f'El combo con numero {self.numero_orden} es: Clasico'
-                case 2: 
-                    self.tipo_combo = f'El combo con numero {self.numero_orden} es Familiar'
-                case 3:
-                    self.tipo_combo = f'El combo con numero {self.numero_orden} es Sandwich'
-                case _:
-                    pass
-            self.agrega = f'{self.tipo_combo} y esta a nombre de {self.nombre_cliente}'    
-            self.lista_pedidos.append(self.agrega)
+        agregar = f'Combo numero {contador} de tipo {tipo} a nombre de {nombre}, pedido a las {hora:.2f} horas'
+        lista_pedidos.append(agregar)
+        contador += 1
+        hora += 0.15
     
-    def mostrar_cola(self):
-        for i in range (len(self.lista_pedidos)):
-            print(self.agrega)
-    
-    def atender(self):
-        pass
-    
-new_tip_top = tip_top()
-new_tip_top.agregar_pedidos()
-new_tip_top.mostrar_cola()
-    
+def mostrar_cola():
+    print('Mostrando cola actual: ')
+    for agregar in lista_pedidos:
+        print(agregar)
+        
+def atender():
+    seq = int(input('Cuantas ordenes desea atender: '))
+    for i in range (seq):
+        elimina = lista_pedidos.popleft()
+        print(f'Eliminando orden {elimina}')
+
+agregar_pedidos()
+mostrar_cola()
+atender()
+
+        
