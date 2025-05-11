@@ -50,7 +50,10 @@ def atender():
         print(f'Eliminando orden {elimina}')
 
 agregar_pedidos()
+print("\n")
 mostrar_cola()
+print("\n")
 atender()
-
+print("\n")
+mostrar_cola()
         
