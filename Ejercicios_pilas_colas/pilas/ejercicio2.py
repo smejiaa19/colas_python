@@ -5,34 +5,40 @@ panes a la bandeja (push), vender uno (pop), y visualizar qué tipo de pan está
 para vender (peek).
 '''
 
-class panaderia():
+class Panaderia:
     
     def __init__(self):
         pass
     
     def pedir_panes(self):
         self.panes = []
-        seq = int(input('Cuantos panes hay en la bandeja: '))
-        self.pan = 1
+        seq = int(input('¿Cuántos panes deseas agregar a la bandeja?: '))
         for i in range(seq):
-            self.panes.append(self.pan)
-            self.pan += 1
+            tipo_pan = input(f'Ingresa el tipo de pan para el pan #{i + 1}: ')
+            self.panes.append(tipo_pan)
         print(f'Panes en la bandeja: {self.panes}') 
     
     def vender_panes(self):
         if len(self.panes) == 0: 
             print('No hay panes para vender')        
         else: 
-            print('Cuantos panes desea vender: ')
+            print('¿Cuántos panes deseas vender?: ')
             seq = int(input())
             if seq > len(self.panes):
-                print('Hay menos panes q la cantidad indicada')
+                print('Hay menos panes que la cantidad indicada')
             else: 
                 for i in range(seq):
                     self.panes.pop()
                 print(f'La cantidad de panes pendientes es de: {self.panes}')
+    
+    def peek(self):
+        if len(self.panes) == 0:
+            print('No hay panes en la bandeja')
+        else:
+            print(f'El pan listo para vender es: {self.panes[-1]}')                
                 
-                
-new_panaderia = panaderia()
+# crear instancia de la clase Panaderia y ejecutar metodos
+new_panaderia = Panaderia()
 new_panaderia.pedir_panes()
+new_panaderia.peek()  # peekeando para ver cual tipo de pan esta listo para vender
 new_panaderia.vender_panes()
