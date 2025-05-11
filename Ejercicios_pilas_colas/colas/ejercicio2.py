@@ -26,35 +26,43 @@ def ingresar_cola():
             >>> 1) - Bluefields 
             >>> 2) - Corn Island
             >>> ''')
-
-            tipo = input('''El vuelo es de tipo: 
-            >>> 1) - Comercial 
-            >>> 2) - Carga
-            >>> 3) - Emergencia
-            >>> ''')
             
-            agrega = f'El vuelo {i+1} es: {tipo_nacion} con destino a: {destino} de tipo: {tipo}' 
-            lista_vuelos.append(agrega)
         elif var == 2:
             tipo_nacion = 'Internacional'
             destino = input('''Cual es su destino: 
             >>> 1) - Panama
             >>> 2) - Miami
             >>> ''')
+        
+        tipo = input('''El vuelo es de tipo: 
+        >>> 1) - Comercial
+        >>> 2) - Carga
+        >>> 3) - Emergencia
+        >>> ''')
             
-            tipo = input('''El vuelo es de tipo: 
-            >>> 1) - Comercial
-            >>> 2) - Carga
-            >>> 3) - Emergencia
-            >>> ''')
+        codigo_vuelo = int(input('Ingrese el codigo de su vuelo: '))
+        aerolinea = input('Nombre de la aerolinea: ')
+        
             
-            agrega = f'El vuelo {i+1} es: {tipo_nacion} con destino a: {destino} de tipo: {tipo}'
+        agrega = f'El vuelo {codigo_vuelo} es: {tipo_nacion} con destino a: {destino} de tipo: {tipo} en la aerolinea: {aerolinea}'
+        if tipo == 'Emergencia':
+            lista_vuelos.appendleft(agrega)
+        else:
             lista_vuelos.append(agrega)
-    
-    for i in range (len(lista_vuelos)):
-            print(agrega)
             
-def priorizar_emergencia():
-    pass
-    
+def mostrar_cola():
+    print('Lista de vuelos')
+    for agrega in lista_vuelos:
+        print(agrega)
+        
+
+def autorizar():
+    n = int(input('Cuantos vuelos desea autorizar para despegar: '))
+    for i in range (n):
+        autorizado = lista_vuelos.popleft()
+        print(f'{autorizado}')
+        
 ingresar_cola()
+mostrar_cola()
+autorizar()
+
