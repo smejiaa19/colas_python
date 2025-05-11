@@ -15,7 +15,14 @@ def ingresar_ciudadanos():
     n = int(input('Cuantos ciudadanos desea ingresar: '))
     for i in range (n):
         nombre = input(f'Ingrese el nombre del ciudadano numero {i+1}: ')
-        cola_ciudadanos.append(nombre)
+        cedula = input(f'Ingrese la cedula del ciudadano {nombre}: ')
+        tipo = input(f'''Que tipo de tramite va a realizar:
+        >>> 1) - Permiso de construccion
+        >>> 2) - Pagos impuestos
+        >>> 3) - Certificaciones
+        >>> ''')
+        agrup = f'Ciudadano {nombre} con numero de cedula {cedula} realizara un tramite de tipo {tipo}'
+        cola_ciudadanos.append(agrup)
     print(cola_ciudadanos)
     
 def retirar():
@@ -24,13 +31,13 @@ def retirar():
         print('No es posible realizar esta accion')
     else: 
         for i in range (seq):
-            print(f'Retirando ciudadano {cola_ciudadanos[i]} con numero {i+1}')   
-            cola_ciudadanos.popleft()
+            ciudadano = cola_ciudadanos.popleft()
+            print(f'Retirando: {ciudadano}') 
         print(f'La cola despues de retirar esta asi: {cola_ciudadanos}')
 def visualizar():
     print('La cola es la siguiente: ')
     for i in range(len(cola_ciudadanos)):
-        print(f'Ciudadano {cola_ciudadanos[i]} con numero {i+1}')
+        print(f'{cola_ciudadanos[i]}')
 
 ingresar_ciudadanos()
 visualizar()
